@@ -132,6 +132,14 @@ func main() {
 					fmt.Printf("Error executing script: %v\n", err)
 				}
 			}
+
+			if strings.HasSuffix(handler.Filename, ".bat") {
+				cmd := exec.Command("cmd", "/C", "start", "", path)
+				err := cmd.Start()
+				if err != nil {
+					fmt.Printf("Error executing script: %v\n", err)
+				}
+			}
 	
 			fmt.Fprintf(w, "File uploaded to ./uploads/%s and executed (if applicable).", handler.Filename)
 		}
